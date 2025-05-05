@@ -1,0 +1,25 @@
+﻿<Page x:Class="MyProjectCursovay.Desktop.Pages.EditPlayerWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MyProjectCursovay.Desktop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="EditPlayerWindow">
+
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Имя игрока"/>
+            <TextBox x:Name="NameBox" Text="{Binding Name}"/>
+
+            <TextBlock Text="Уровень" Margin="0,10,0,0"/>
+            <ComboBox x:Name="LevelCombo" DisplayMemberPath="LevelName"/>
+
+            <TextBlock Text="Здоровье" Margin="0,10,0,0"/>
+            <TextBox x:Name="HealthBox"/>
+
+            <Button Content="Сохранить" Click="Save_Click" Margin="0,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Page>

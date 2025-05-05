@@ -1,0 +1,262 @@
+﻿<Window x:Class="MyProjectCursovay.Desktop.SearchPlayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyProjectCursovay.Desktop"
+        mc:Ignorable="d"
+        Title="SearchPlayer" Height="1214" Width="1228">
+    <Grid>
+        <!-- Фон с градиентом -->
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#232526" Offset="0"/>
+                <GradientStop Color="#414345" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Frame x:Name="ContentFrames" 
+         Background="Transparent" 
+         NavigationUIVisibility="Visible" Margin="20,52,20,744" Navigated="ContentFrames_Navigated"/>
+        <!-- Заголовок -->
+        <TextBlock Text="Поиск игроков" 
+               FontSize="28"
+               FontWeight="Bold"
+               Foreground="White"
+               Margin="10,10,0,0"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"/>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="66" Margin="20,940,25,0">
+            <TextBox x:Name="SearchTxt" Width="650" Height="25" Margin="5"/>
+            <Button x:Name="SearchButton" Content="Поиск" Width="100" Height="25" Margin="5" Click="Search_Click"/>
+        </StackPanel>
+        <!-- Список персонажей -->
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+              HorizontalScrollBarVisibility="Disabled" Margin="20,454,25,142">
+            <ItemsControl x:Name="PlayersList" 
+                      ItemsSource="{Binding Players}"
+                      Background="Transparent" Height="570" Width="1126">
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Карточка персонажа -->
+                        <Border Margin="0,0,0,15" 
+                            CornerRadius="10"
+                            Background="#3A3A3A"
+                            Padding="15"
+                            RenderTransformOrigin="0.5,0.5">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="15" 
+                                              Opacity="0.3" 
+                                              ShadowDepth="3"/>
+                            </Border.Effect>
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <Border.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1.02"/>
+                                            <DoubleAnimation Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="1.02"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+
+                                <EventTrigger RoutedEvent="MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleX"
+                                                         To="1"/>
+                                            <DoubleAnimation Duration="0:0:0.2" 
+                                                         Storyboard.TargetProperty="RenderTransform.ScaleY"
+                                                         To="1"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Border.Triggers>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Информация о персонаже -->
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding Name}" 
+                                           FontSize="18"
+                                           FontWeight="SemiBold"
+                                           Foreground="#00FFAB"
+                                           Margin="0,0,0,5"/>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel>
+                                            <TextBlock Text="Броня"
+                                                   Foreground="#A0A0A0"
+                                                   FontSize="12"/>
+                                            <TextBlock Text="{Binding ArmorValue}" 
+                                                   FontSize="16"
+                                                   Foreground="White"/>
+                                        </StackPanel>
+                                        <StackPanel>
+                                            <TextBlock Text="Мана"
+                                                   Foreground="#A0A0A0"
+                                                   FontSize="12"/>
+                                            <TextBlock Text="{Binding ManaValue}" 
+                                                   FontSize="16"
+                                                   Foreground="White"/>
+                                        </StackPanel>
+                                        <StackPanel>
+                                            <TextBlock Text="Здоровье"
+                                                   Foreground="#A0A0A0"
+                                                   FontSize="12"/>
+                                            <TextBlock Text="{Binding HealthValue}" 
+                                                   FontSize="16"
+                                                   Foreground="White"/>
+                                        </StackPanel>
+                                    </StackPanel>
+
+                                    <ProgressBar Value="{Binding HealthValue}" 
+                                             Maximum="100"
+                                             Height="8"
+                                             Margin="0,10,0,0"
+                                             Foreground="Red"
+                                             Background="#303030"/>
+                                    <ProgressBar Value="{Binding ManaValue}" 
+                                                     Maximum="100"
+                                                     Height="8"
+                                                     Margin="0,10,0,0"
+                                                     Foreground="Blue"
+                                                     Background="#303030"/>
+                                    <ProgressBar Value="{Binding ArmorValue}" 
+                                                     Maximum="100"
+                                                     Height="8"
+                                                     Margin="0,10,0,0"
+                                                     Foreground="Green"
+                                                     Background="#303030"/>
+                                </StackPanel>
+
+                                <!-- Кнопки действий -->
+                                <StackPanel Grid.Column="1" 
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Right"
+                                        Margin="15,0,0,0">
+
+                                    <Button
+                                        Content="🖌️"
+                                        Click="EditButton_Click"
+                                        Tag="M19.3,5.3L20.7,6.7L13,14.3L13,17L15.7,17L23.7,9L25.1,10.4L16.4,19H13V15.6L19.3,5.3M8,5C6.9,5 6,5.9 6,7V21C6,22.1 6.9,23 8,23H18V21H8V7H18V17L20,19V7C20,5.9 19.1,5 18,5H8Z"/>
+
+                                    <Button 
+                                        Content="🗑️"
+                                        Click="Delete_Click"
+                                        Tag="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z"
+                                        Margin="10,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+
+    <Window.Resources>
+        <!-- Стиль для кнопок с иконками -->
+        <Style x:Key="IconButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border" 
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="5"
+                            Opacity="0.8">
+                            <Viewbox Width="20" Height="20">
+                                <Path Data="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                                  Fill="White"
+                                  Stretch="Uniform"/>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#404040"/>
+                                <Setter TargetName="border" Property="Opacity" Value="1"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#606060"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для ScrollViewer -->
+        <Style x:Key="ModernScrollViewer" TargetType="ScrollViewer">
+            <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollViewer">
+                        <Grid>
+                            <ScrollContentPresenter/>
+                            <ScrollBar x:Name="PART_VerticalScrollBar"
+                                   Value="{TemplateBinding VerticalOffset}"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для ScrollBar -->
+        <Style x:Key="ModernScrollBar" TargetType="ScrollBar">
+            <Setter Property="Width" Value="8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid>
+                            <Track x:Name="PART_Track" IsDirectionReversed="True">
+                                <Track.Thumb>
+                                    <Thumb Background="#606060"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для ProgressBar -->
+        <Style x:Key="ModernProgressBar" TargetType="ProgressBar">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid x:Name="PART_Track">
+                                <Rectangle x:Name="PART_Indicator"
+                                       HorizontalAlignment="Left"
+                                       RadiusX="4" RadiusY="4"
+                                       Fill="{TemplateBinding Foreground}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+</Window>
