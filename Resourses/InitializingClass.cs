@@ -9,7 +9,6 @@ namespace MyProjectCursovay.Sourse
     internal class InitializingClass
     {
         public ProgressBarSettings pgSettings;
-        public Controller controller;
         public InterfaseSettings interfaseSettings;
         public StartAddData startAddData;
         public GetData getData;
@@ -17,7 +16,6 @@ namespace MyProjectCursovay.Sourse
         public InitializingClass() 
         {
             interfaseSettings = new InterfaseSettings();
-            controller = new Controller();
             pgSettings = new ProgressBarSettings();
             startAddData = new StartAddData();
             getData = new GetData();

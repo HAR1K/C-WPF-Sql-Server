@@ -12,7 +12,7 @@ namespace MyProjectCursovay.Sourse
 {
     internal class StartAddData
     {
-        public void AddFullParametr()
+        public async void AddFullParametr()
         {
             AddLevel();
             AddMana();

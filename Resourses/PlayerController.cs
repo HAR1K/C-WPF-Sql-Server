@@ -90,7 +90,7 @@ namespace MyProjectCursovay.Sourse
                                 .FirstOrDefaultAsync(p => p.Id == id);
             }
         }
-        public void UpdatePlayer(int playerId, string newName, int? armorId, int? manaId, int? healfId, int? levelId)
+        public async void UpdatePlayer(int playerId, string newName, int? armorId, int? manaId, int? healfId, int? levelId)
         {
             using (var db = new ApplicationContext())
             {
@@ -123,7 +123,7 @@ namespace MyProjectCursovay.Sourse
                 if (levelId.HasValue)
                     player.LevelId = levelId.Value;
 
-                db.SaveChanges();
+               await  db.SaveChangesAsync();
             }
         }
     }
