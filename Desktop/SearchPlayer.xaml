@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MyProjectCursovay.Desktop"
         mc:Ignorable="d"
-        Title="SearchPlayer" Height="1214" Width="1228">
+        Title="SearchPlayer" Height="1046" Width="1228">
     <Grid>
         <!-- Фон с градиентом -->
         <Grid.Background>
@@ -16,26 +16,26 @@
         </Grid.Background>
         <Frame x:Name="ContentFrames" 
          Background="Transparent" 
-         NavigationUIVisibility="Visible" Margin="20,52,20,744" Navigated="ContentFrames_Navigated"/>
+         NavigationUIVisibility="Visible" Margin="28,52,12,581" Navigated="ContentFrames_Navigated"/>
         <!-- Заголовок -->
         <TextBlock Text="Поиск игроков" 
                FontSize="28"
                FontWeight="Bold"
                Foreground="White"
-               Margin="10,10,0,0"
+               Margin="18,10,0,0"
                HorizontalAlignment="Left"
                VerticalAlignment="Top"/>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="66" Margin="20,940,25,0">
-            <TextBox x:Name="SearchTxt" Width="650" Height="25" Margin="5"/>
-            <Button x:Name="SearchButton" Content="Поиск" Width="100" Height="25" Margin="5" Click="Search_Click"/>
+            <TextBox x:Name="SearchTxt" Width="986" Height="37" Margin="5"/>
+            <Button x:Name="SearchButton" Content="Поиск" Width="170" Height="37" Margin="5" Click="Search_Click"/>
         </StackPanel>
         <!-- Список персонажей -->
         <ScrollViewer VerticalScrollBarVisibility="Auto" 
-              HorizontalScrollBarVisibility="Disabled" Margin="20,454,25,142">
+              HorizontalScrollBarVisibility="Disabled" Margin="28,454,16,142">
             <ItemsControl x:Name="PlayersList" 
                       ItemsSource="{Binding Players}"
-                      Background="Transparent" Height="570" Width="1126">
+                      Background="Transparent" Height="570" Width="1165">
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

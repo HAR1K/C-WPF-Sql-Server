@@ -19,7 +19,7 @@ namespace MyProjectCursovay.Sourse
             AddHealf();
             AddArmor();
         }
-        private void AddLevel()
+        private async void AddLevel()
         {
             using (var db = new ApplicationContext())
             {
@@ -31,7 +31,7 @@ namespace MyProjectCursovay.Sourse
                          new Level { LevelName = "Средний" },
                          new Level { LevelName = "Сложный" }
                      });
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                     MessageBox.Show("Данные с уроней успешно записались");
                 }
                 else
@@ -40,7 +40,7 @@ namespace MyProjectCursovay.Sourse
                 }
             }
         }
-        private void AddMana()
+        private async void AddMana()
         {
             using (var db = new ApplicationContext())
             {
@@ -52,7 +52,7 @@ namespace MyProjectCursovay.Sourse
                          new Mana { ValueMana = 75},
                         new Mana { ValueMana = 100}
                     });
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                     MessageBox.Show("Данные успешно запипсались с Маной");
                 }
                 else
@@ -61,7 +61,7 @@ namespace MyProjectCursovay.Sourse
                 }
             }
         }
-        private void AddArmor()
+        private async void AddArmor()
         {
             using (var db = new ApplicationContext())
             {
@@ -74,7 +74,7 @@ namespace MyProjectCursovay.Sourse
                         new Armor { ValueArmor = 75}
                         
                     });
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                     MessageBox.Show("Данные успешно запипсались с Армором");
                 }
                 else
@@ -83,7 +83,7 @@ namespace MyProjectCursovay.Sourse
                 }
             }
         }
-        private void AddHealf()
+        private async void AddHealf()
         {
             using (var db = new ApplicationContext())
             {
@@ -95,7 +95,7 @@ namespace MyProjectCursovay.Sourse
                         new Healf { ValueHealf = 50},
                         new Healf { ValueHealf = 75}
                     });
-                    db.SaveChanges();
+                    await db.SaveChangesAsync();
                     MessageBox.Show("Данные успешно запипсались с ХП");
                 }
                 else

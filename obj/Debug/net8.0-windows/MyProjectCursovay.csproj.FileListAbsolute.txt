@@ -63,3 +63,4 @@ C:\Users\arexa\source\repos\MyProjectCursovay\MyProjectCursovay\obj\Debug\net8.0
 C:\Users\arexa\source\repos\MyProjectCursovay\MyProjectCursovay\obj\Debug\net8.0-windows\Desktop\Pages\EditPlayerWindow.baml
 C:\Users\arexa\source\repos\MyProjectCursovay\MyProjectCursovay\obj\Debug\net8.0-windows\Desktop\SearchPlayer.g.cs
 C:\Users\arexa\source\repos\MyProjectCursovay\MyProjectCursovay\obj\Debug\net8.0-windows\Desktop\SearchPlayer.baml
+C:\Users\arexa\source\repos\MyProjectCursovay\MyProjectCursovay\obj\Debug\net8.0-windows\MyProjectCursovay.sourcelink.json
